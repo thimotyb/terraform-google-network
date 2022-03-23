@@ -79,3 +79,17 @@ module "firewall_rules" {
   network_name = module.vpc.network_name
   rules        = local.rules
 }
+	
+/***
+Bucket
+*/
+resource "google_storage_bucket" "tf-bucket" {
+  project       = var.project_id
+  name          = "bucket-test-tfcloud"
+  location      = "us-west1"
+  force_destroy = true
+  storage_class = "REGIONAL"
+  versioning {
+    enabled = true
+  }
+}
